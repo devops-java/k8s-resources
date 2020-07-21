@@ -2,12 +2,12 @@
   "apiVersion": "batch/v1",
   "kind": "Job",
   "metadata": {
-    "name": "counterJob"
+    "name": "counterjob"
   },
   "spec": {
     "template": {
       "metadata": {
-        "name": "counterJobPod"
+        "name": "counterjobpod"
       },
       "spec": {
         "containers": [
