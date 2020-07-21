@@ -4,7 +4,7 @@ metadata:
   name: spring-boot-web
 spec:
   containers:
-    - image: rkp201/k8s-spring-app:1.2
+    - image: rkp201/k8s-spring-app:1.3
       name: spring-boot-web
       ports:
         - containerPort: 8080
