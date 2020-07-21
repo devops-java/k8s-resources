@@ -125,4 +125,5 @@ kubectl delete ns development
 
 ### Creating Pod With JSON
 ```
-
+kubectl create -f https://raw.githubusercontent.com/devops-java/k8s-resources/master/pod-manual.json
+kubectl get pods
