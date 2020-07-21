@@ -11,7 +11,10 @@
     },
     "template": {
       "metadata": {
-        "name": "spring-boot-web"
+        "name": "spring-boot-web",
+        "labels":{
+        "env":"design"
+        }
       },
       "spec": {
         "containers": [
