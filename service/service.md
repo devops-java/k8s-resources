@@ -31,4 +31,8 @@ hostname: spring-web-rc-2vlxv$ curl 10.96.220.79:80/host
 hostname: spring-web-rc-dxcjw$ curl 10.96.220.79:80/host
 hostname: spring-web-rc-6j4wd$
 ````
-
+port forward
+```
+kubectl port-forward service/spring-web-app-svc 8080:80
+curl localhost:8080/host
+```
