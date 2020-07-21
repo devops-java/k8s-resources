@@ -6,7 +6,7 @@ spec:
   containers:
     - image: 'rkp201/k8s-spring-app:1.3'
       name: spring-boot-web
-      livenessProbe
+      livenessProbe:
         httpGet:
           path: /health
           port: 8080
