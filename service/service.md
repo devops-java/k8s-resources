@@ -2,7 +2,7 @@
 
 ### communicating between service and rc
 
-3 replicas and 1 svc
+3 replicas and 1 svc. svc will use iptables where it maps the constant svc ip with the random pod id.
 ```
 kubectl apply -f https://raw.githubusercontent.com/devops-java/k8s-resources/master/service/spring-web-app-rc.json
 kubectl appyy -f https://raw.githubusercontent.com/devops-java/k8s-resources/master/service/spring-web-svc.json
