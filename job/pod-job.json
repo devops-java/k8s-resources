@@ -12,7 +12,7 @@
       "spec": {
         "containers": [
           {
-            "name": "counterJobPod",
+            "name": "counterjobpod",
             "image": "rkp201/k8s-spring-app:1.6"
           }
         ],
