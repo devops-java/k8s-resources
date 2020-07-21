@@ -220,4 +220,8 @@ java.lang.RuntimeException: error in health check
         at java.lang.Thread.run(Thread.java:748) [na:1.8.0_212]
 
 2020-07-21 08:03:45.991  INFO 1 --- [extShutdownHook] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
+
+With InitialDelaySeconds:
+
+kubectl apply -f https://raw.githubusercontent.com/devops-java/k8s-resources/master/pod-rc/pod-liveness-v1.json
 ```
