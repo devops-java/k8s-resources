@@ -1,1 +1,19 @@
 
+{
+  "apiVersion": "v1",
+  "kind": "Service",
+  "metadata": {
+    "name": "spring-web-app-svc"
+  },
+  "spec": {
+    "ports": [
+      {
+        "port": 80,
+        "targetPort": 8080
+      }
+    ],
+    "selector": {
+      "env": "design"
+    }
+  }
+}
