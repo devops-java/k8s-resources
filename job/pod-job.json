@@ -1,0 +1,23 @@
+{
+  "apiVersion": "batch/v1",
+  "kind": "Job",
+  "metadata": {
+    "name": "counterJob"
+  },
+  "spec": {
+    "template": {
+      "metadata": {
+        "name": "counterJobPod"
+      },
+      "spec": {
+        "containers": [
+          {
+            "name": "counterJobPod",
+            "image": "rkp201/k8s-spring-app:1.6"
+          }
+        ],
+        "restartPolicy": "Never"
+      }
+    }
+  }
+}
