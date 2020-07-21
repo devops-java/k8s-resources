@@ -225,3 +225,106 @@ With InitialDelaySeconds:
 
 kubectl apply -f https://raw.githubusercontent.com/devops-java/k8s-resources/master/pod-rc/pod-liveness-v1.json
 ```
+### Replication Controller
+
+```
+create pods managed by rc:
+ kubectl apply -f https://raw.githubusercontent.com/devops-java/k8s-resources/master/pod-rc/pod-rc.json
+ 
+list pods:
+kubectl get pods
+NAME                  READY   STATUS    RESTARTS   AGE
+spring-web-rc-4pvzh   1/1     Running   0          11s
+spring-web-rc-w2j82   1/1     Running   0          11s
+spring-web-rc-w62xw   1/1     Running   0          11s
+
+list rc:
+kubectl get rc
+NAME            DESIRED   CURRENT   READY   AGE
+spring-web-rc   3         3         3       3m55s
+
+list event of rc:
+ kubectl describe rc spring-web-rc
+Name:         spring-web-rc
+Namespace:    default
+Selector:     env=design
+Labels:       env=design
+Annotations:  kubectl.kubernetes.io/last-applied-configuration:
+                {"apiVersion":"v1","kind":"ReplicationController","metadata":{"annotations":{},"name":"spring-web-rc","namespace":"default"},"spec":{"repl...
+Replicas:     3 current / 3 desired
+Pods Status:  3 Running / 0 Waiting / 0 Succeeded / 0 Failed
+Pod Template:
+  Labels:  env=design
+  Containers:
+   spring-boot-web:
+    Image:        rkp201/k8s-spring-app:1.3
+    Port:         8080/TCP
+    Host Port:    0/TCP
+    Environment:  <none>
+    Mounts:       <none>
+  Volumes:        <none>
+Events:
+  Type    Reason            Age    From                    Message
+  ----    ------            ----   ----                    -------
+  Normal  SuccessfulCreate  4m54s  replication-controller  Created pod: spring-web-rc-w62xw
+  Normal  SuccessfulCreate  4m54s  replication-controller  Created pod: spring-web-rc-4pvzh
+  Normal  SuccessfulCreate  4m54s  replication-controller  Created pod: spring-web-rc-w2j82
+  
+shows that 3 pods created.
+
+let me delete a pod.
+
+kubectl delete po spring-web-rc-w62xw
+pod "spring-web-rc-w62xw" deleted
+kubectl get pods
+NAME                  READY   STATUS    RESTARTS   AGE
+spring-web-rc-4pvzh   1/1     Running   0          8m39s
+spring-web-rc-7226s   1/1     Running   0          18s
+spring-web-rc-w2j82   1/1     Running   0          8m39s  // newly created as it is backed by rc.
+
+re-labeling a pod:
+
+kubectl label pod spring-web-rc-4pvzh env=dev --overwrite
+pod/spring-web-rc-4pvzh labeled
+kubectl get pods
+NAME                  READY   STATUS    RESTARTS   AGE
+spring-web-rc-4pvzh   1/1     Running   0          11m // re-labelled as dev
+spring-web-rc-7226s   1/1     Running   0          2m42s
+spring-web-rc-vhglf   1/1     Running   0          6s // new by rc
+spring-web-rc-w2j82   1/1     Running   0          11m
+
+
+editing rc:
+
+Here we will scale replica from 3 to 2. we will update the node: spec.replicas 
+
+declarative approach: kubectl scale rc kubia --replicas=3
+
+or use below
+
+kubectl get rc
+NAME            DESIRED   CURRENT   READY   AGE
+spring-web-rc   3         3         3       12m
+ kubectl edit rc spring-web-rc
+replicationcontroller/spring-web-rc edited
+ kubectl get pods
+NAME                  READY   STATUS        RESTARTS   AGE
+spring-web-rc-4pvzh   1/1     Running       0          13m
+spring-web-rc-7226s   1/1     Running       0          5m2s
+spring-web-rc-vhglf   0/1     Terminating   0          2m26s // one pod backed by rc is terminating
+spring-web-rc-w2j82   1/1     Running       0          13m
+
+
+deleting rc:
+It will delete the pods managed by rc.
+
+kubectl delete rc spring-web-rc 
+
+kubectl get pods
+NAME                  READY   STATUS        RESTARTS   AGE
+spring-web-rc-4pvzh   1/1     Running       0          17m // not mnaged by rc because of label change env=dev
+spring-web-rc-7226s   0/1     Terminating   0          8m46s
+spring-web-rc-w2j82   0/1     Terminating   0          17m
+
+kubectl delete rc kubia --cascade=false // this will delete the rc but the pods will go unmanaged and live thr own.
+```
