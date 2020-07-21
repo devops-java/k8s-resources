@@ -43,3 +43,22 @@ $ kubectl get pod
 NAME               READY   STATUS      RESTARTS   AGE
 counterjob-lnqv8   0/1     Completed   0          7m35s
 ```
+executing shell command from job
+```
+$ kubectl apply -f https://raw.githubusercontent.com/devops-java/k8s-resources/master/job/pod-command-job.json
+job.batch/countdown created
+$ kubectl get po -w
+NAME               READY   STATUS              RESTARTS   AGE
+countdown-wvxrj    0/1     ContainerCreating   0          5s
+counterjob-lnqv8   0/1     Completed           0          10m
+countdown-wvxrj    0/1     Completed           0          13s
+^C$ kubectl get po -w
+NAME               READY   STATUS      RESTARTS   AGE
+countdown-wvxrj    0/1     Completed   0          26s
+counterjob-lnqv8   0/1     Completed   0          10m
+^C$ kubectl get jobs
+NAME         COMPLETIONS   DURATION   AGE
+countdown    1/1           13s        39s
+counterjob   1/1           7m11s      10m
+```
+k8s also supports cron expression for job scheduling.
