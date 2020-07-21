@@ -97,3 +97,32 @@ $ kubectl get pods
 No resources found in default namespace.
 
 descriptor approach:
+Here the namespace is added as part of the metadata.
+kubectl create -f https://raw.githubusercontent.com/devops-java/k8s-resources/master/namespace.json
+kubectl create -f https://raw.githubusercontent.com/devops-java/k8s-resources/master/pod-namespace.yaml
+
+You can have two pods with the same name. 
+One is in the default namespace, and the other is in your custom-namespace.
+
+When listing, describing, modifying, or deleting objects in other namespaces, 
+you need to pass the --namespace (or -n) flag to kubectl. If you don’t specify the namespace, 
+kubectl performs the action in the default namespace configured in the current kubectl context. 
+The current context’s namespace and the current context 
+itself can be changed through kubectl config commands.
+
+if a pod in namespace foo knows the IP address of a pod in namespace bar, 
+there is nothing preventing it from sending traffic, such as HTTP requests, to the other pod.
+
+```
+
+### Deleting Pods
+```
+Use either of the approach:
+kubectl delete po podName -n namespaceName
+kubectl delete po -l env=design
+kubectl delete ns development
+```
+
+### Creating Pod With JSON
+```
+
