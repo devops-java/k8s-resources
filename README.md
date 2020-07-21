@@ -39,5 +39,9 @@ env notin (prod,devel) to select pods with the env label set to any value other 
 kubectl label po spring-boot-web env=debug --overwrite
 kubectl get po -l env=design
 kubectl get po -l env!=design
-
-
+```
+### Node Selector Labels
+```
+kubectl create -f https://raw.githubusercontent.com/devops-java/k8s-resources/master/pod-manual-v2.yaml
+It selects the node which is having label prod="true"
+```
