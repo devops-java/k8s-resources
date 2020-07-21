@@ -7,7 +7,7 @@
   "spec": {
     "containers": [
       {
-        "image": "rkp201/k8s-spring-app:1.3",
+        "image": "rkp201/k8s-spring-app:1.5",
         "name": "spring-boot-web",
         "livenessProbe": {
           "httpGet": {
