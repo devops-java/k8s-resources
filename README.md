@@ -45,3 +45,13 @@ kubectl get po -l env!=design
 kubectl create -f https://raw.githubusercontent.com/devops-java/k8s-resources/master/pod-manual-v2.yaml
 It selects the node which is having label prod="true"
 ```
+
+### Pod Annotations
+```
+additional metadata for pod.
+not used for filtering. it is a metadata read by programs.
+max size is 256kb.
+kubectl create - f https://raw.githubusercontent.com/devops-java/k8s-resources/master/pod-manual-v3.yaml
+kubectl get po podName -o yaml
+
+```
