@@ -4,6 +4,11 @@
 ```
 https://github.com/devops-java/spring-docker-image-app
 ```
+
+### DockerHub
+```
+Docker Image: rkp201/k8s-spring-app:1.x
+```
 ### End Points
 ```
 Below are the container endpoints
