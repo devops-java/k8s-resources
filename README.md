@@ -1,5 +1,9 @@
 # k8s-resources
+### Repository
 
+```
+https://github.com/devops-java/spring-docker-image-app
+```
 ### End Points
 ```
 Below are the container endpoints
