@@ -17,7 +17,8 @@ list all keys of etcd
 kubectl exec etcd-master -n kube-system etcdctl get / --prefix -keys-only
 root directory in k8s is registry. under that minions, pods, replicaset, roles, secrets.
 
-In HA environment, multiple master node exists and hence multiple etcd. In this case the etcd services in each node must aware about each other.
+In HA environment, multiple master node exists and hence multiple etcd. 
+In this case the etcd services in each node must aware about each other.
 To do so we specifify host details of each etcd in intial-cluster-controller.
 
 For example ETCDCTL version 2 supports the following commands:
