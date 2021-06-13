@@ -48,4 +48,12 @@ scheduler identifies the proper node for pod request and talk with api-server ab
 Now api-server delegates to the kubelet of worker node.
 
 kube-apiserver also available as binaries. run it as service in master node.
+
+kube-apiserver aware about etcd server host details with the key etcd-servers.kubernets
+with kubeadm: kubectl get po -n kube-system will show api-server running as a pod.
+apiserver yaml can be found at /etc/kubernetes/manifest/kube-apiserver.yaml
+
+none-kubeadm setup: /etc/systemd/system/kube-apiserver.service
+
+running process of kube-apiserver, grep in ps -aux.
 </pre>
