@@ -56,4 +56,19 @@ apiserver yaml can be found at /etc/kubernetes/manifest/kube-apiserver.yaml
 none-kubeadm setup: /etc/systemd/system/kube-apiserver.service
 
 running process of kube-apiserver, grep in ps -aux.
+
+kube controller-manager manages the controllers. a process that monitors the state of system or cluster by using controller(s).
+node controller check the status of codes with heartbeat from nodes in every 5 seconds.
+replication comntroller monitor the status of number of pods running in cluster.
+Deployment Controller, Namespace Controller, Service Controller, Job Controller any many more.
+what are the different types of controller availabel in k8s.
+kube controller manager can be installed as binary.
+see options at /etc/systemd/system/kube-controller-manager.service
+kube-controller-manager-master is the pod run by kubeadm(in) tool under the namespace kube-system.
+running process ps -aux | grep kube-controller-manager
+
+
+see the options at /etc/kubernets/manifest/kube-controller-manager.yaml
+
+
 </pre>
