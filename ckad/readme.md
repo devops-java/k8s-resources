@@ -71,7 +71,8 @@ running process ps -aux | grep kube-controller-manager
 
 kube-scheduler decides which pod should go into which node but doesnt places the pod into a node.
 kubelet creates the pod on the node.
-pods may have diffrenet resource requests or infra needs. By looking at these kube-scheulder chooses appropriate node for the pod.
+pods may have diffrenet resource requests or infra needs. 
+By looking at these kube-scheulder chooses appropriate node for the pod.
 kube-scheduler can be downloaded as binary and run as a service.
 see options at /etc/systemd/system/kube-scheduler.service
 with kubeadm kube-scheduler at /etc/kubernetes/manifest/kube-scheduler.yaml
@@ -81,14 +82,18 @@ running process ps -aux | grep kube-scheduler
 kubelet runs in every worker node. it get request from api-server to onboard the pod.
 registers node into the cluster, pull image, run it.
 monitor the pods and update the same to api-serevr regularly.
-kubelet must need to install on the worker node manually with binaries and run as service. by default kubeadm never installs kubelet.
+kubelet must need to install on the worker node manually with binaries and run as service. 
+by default kubeadm never installs kubelet.
 ps -aux | grep kubelet
 
-kube proxy runs on each node & create appropriate rules (ex: iptable rules in each node) for the newly created service.
+kube proxy runs on each node & create appropriate rules (ex: iptable rules in each node) 
+for the newly created service.
 pods can communicate with each other in the same cluster over the network.
 kube-proxy download as binaries & run as a service.
 kubeadm tool installs kube-proxy in each node as daemonset.
 kubectl get pod -n kube-system
 kubectl get daemonset -n kube-system
+
+
 
 </pre>
