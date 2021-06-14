@@ -78,6 +78,10 @@ with kubeadm kube-scheduler at /etc/kubernetes/manifest/kube-scheduler.yaml
 running process ps -aux | grep kube-scheduler
 
 
-
+kubelet runs in every worker node. it get request from api-server to onboard the pod.
+registers node into the cluster, pull image, run it.
+monitor the pods and update the same to api-serevr regularly.
+kubelet must need to install on the worker node manually with binaries and run as service. by default kubeadm never installs kubelet.
+ps -aux | grep kubelet
 
 </pre>
