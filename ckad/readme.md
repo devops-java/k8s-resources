@@ -61,14 +61,23 @@ kube controller-manager manages the controllers. a process that monitors the sta
 node controller check the status of codes with heartbeat from nodes in every 5 seconds.
 replication comntroller monitor the status of number of pods running in cluster.
 Deployment Controller, Namespace Controller, Service Controller, Job Controller any many more.
-what are the different types of controller availabel in k8s.
+what are the different types of controller availabel in k8s?
 kube controller manager can be installed as binary.
 see options at /etc/systemd/system/kube-controller-manager.service
 kube-controller-manager-master is the pod run by kubeadm(in) tool under the namespace kube-system.
+see the options at /etc/kubernets/manifest/kube-controller-manager.yaml
 running process ps -aux | grep kube-controller-manager
 
 
-see the options at /etc/kubernets/manifest/kube-controller-manager.yaml
+kube-scheduler decides which pod should go into which node but doesnt places the pod into a node.
+kubelet creates the pod on the node.
+pods may have diffrenet resource requests or infra needs. By looking at these kube-scheulder chooses appropriate node for the pod.
+kube-scheduler can be downloaded as binary and run as a service.
+see options at /etc/systemd/system/kube-scheduler.service
+with kubeadm kube-scheduler at /etc/kubernetes/manifest/kube-scheduler.yaml
+running process ps -aux | grep kube-scheduler
+
+
 
 
 </pre>
